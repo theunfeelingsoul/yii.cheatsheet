@@ -1,0 +1,6 @@
+if($model->validate(array('attribute_name')) 
+     // valid
+}
+
+
+source : http://stackoverflow.com/questions/12912853/yii-validation-of-a-specific-field

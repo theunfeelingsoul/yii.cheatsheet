@@ -1,0 +1,6 @@
+<?php $form = ActiveForm::begin(['id' => 'downloadSourceCode']); ?>
+<?= $form->field($model, 'description')->textArea(['rows' => '6']) ?>
+<?= Html::submitButton('Submit') ?>
+<?php ActiveForm::end(); ?>
+
+source : http://stackoverflow.com/questions/27945401/yii2-how-to-add-textarea-in-yii2

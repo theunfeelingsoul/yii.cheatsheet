@@ -1,0 +1,69 @@
+source : http://www.bsourcecode.com/yiiframework2/yii2-0-scenarios/
+
+
+Yii2.0 Scenarios
+A model uses the yii\base\Model::$scenario property for the ‘Scenario’ concept. By default, a model supports only a single scenario named default.
+
+Yii2.0 framework model is designed in very comfortable way for dynamic logic based on scenario. In this tutorial i will share my experience about ‘Scenarios’. A model may be used in different scenarios in different business rules and logic.
+
+For example, when we register a user we will get username, password and email. At the same time during the user login, we will get username and password only. One model expecting different type of validation. But we can handle this easily using yii2.0 scenario
+
+User Register Scenario - Required - username, password, email
+User Login Scenario - Required - username, email
+
+
+1.Create Scenario For Model Yii2.0
+2.Apply Scenario For Model Yii2.0
+3.Scenario Validation Output Yii2.0
+
+
+
+
+
+Create Scenario For Model Yii2.0
+<?php
+class User extends Model
+{
+	public $name;
+	public $email;
+	public $password;
+	
+	public function rules(){
+		return [
+			[['name','email','password'],'required'],
+			['email','email'],
+			[['name', 'email', 'password'], 'required', 'on' => 'register'],
+			];
+	}
+	public function scenarios()
+    {
+		$scenarios = parent::scenarios();
+        $scenarios['login'] = ['name','password'];//Scenario Values Only Accepted
+        return $scenarios;
+    }
+}
+?>
+
+
+
+Apply Scenario For Model Yii2.0
+<?php
+...
+class UserController extends Controller
+{
+	..
+	// APPLY SCENARIOS
+	// scenario is set as a property
+	............
+	public function  actionLogin(){
+		$model = new User;
+		$model->scenario = 'login';
+		.............
+	}
+	// scenario is set through configuration
+	public function  actionRegister(){
+		$model = new User(['scenario' => 'register']);
+		..............
+	}
+}
+?>

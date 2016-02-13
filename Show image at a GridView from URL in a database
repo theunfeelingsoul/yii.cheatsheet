@@ -1,0 +1,21 @@
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'columns' => [
+
+        'id',
+        'name',
+        [
+            'attribute' => 'img',
+            'format' => 'html',
+            'label' => 'ImageColumnLable',
+            'value' => function ($data) {
+                return Html::img('/pathToImage/' . $data['img'],
+                    ['width' => '60px']);
+            },
+        ],
+        ['class' => 'yii\grid\ActionColumn'],
+    ],
+]);
+?>
+
+source : http://www.yiiframework.com/forum/index.php/topic/61902-show-image-at-a-gridview-from-url-in-a-database/
