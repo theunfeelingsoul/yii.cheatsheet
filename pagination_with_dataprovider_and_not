@@ -1,0 +1,24 @@
+Creating pager in Yii2 using LinkPage widget.
+Using data provider and not
+
+$dataProvider = new ActiveDataProvider([
+    'query' => User::find(),
+    'pagination' => array('pageSize' => 50),
+]);
+
+echo \yii\widgets\LinkPager::widget([
+    'pagination'=>$dataProvider->pagination,
+]);
+
+Or if you don't use dataProvider you should use this:
+
+$query = User::find();
+$pagination = new Pagination(['totalCount' => $query->count(), 'pageSize'=>30]);
+
+echo \yii\widgets\LinkPager::widget([
+    'pagination' => $pagination,
+]);
+
+
+source:
+http://stackoverflow.com/questions/23336269/how-to-create-pager-in-yii2

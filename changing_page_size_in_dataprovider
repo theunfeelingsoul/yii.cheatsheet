@@ -1,0 +1,9 @@
+changing_page_size_in_dataprovider
+
+$searchModel = New \app\models\ServiceChargesSearch(); 
+$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+$dataProvider->pagination->pageSize=5;
+
+
+source:
+http://stackoverflow.com/questions/28327446/yii2custom-pagination-for-gridview-in-form-view
